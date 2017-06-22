@@ -21,6 +21,7 @@ RUN apt-add-repository -y ppa:ondrej/php \
         php7.1-curl \
         php7.1-xml \
         php7.1-pgsql \
+        mysql-client \
         ca-certificates \
         nginx \
     && apt-get clean \
@@ -36,8 +37,4 @@ COPY bin/bootstrap-web.sh /usr/local/bin/bootstrap-web
 COPY bin/runit-nginx.sh /usr/local/bin/runit-nginx
 COPY bin/runit-phpfpm.sh /usr/local/bin/runit-phpfpm
 
-RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /usr/local/bin/wp \
-    && chmod +x /usr/local/bin/wp
-
-RUN mkdir /www
 WORKDIR /www
