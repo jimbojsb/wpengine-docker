@@ -1,6 +1,7 @@
 FROM phusion/baseimage:0.9.20
 ENV COMPOSER_ALLOW_SUPERUSER 1
 EXPOSE 80
+EXPOSE 443
 
 CMD /usr/local/bin/bootstrap-web
 
@@ -37,7 +38,6 @@ COPY bin/bootstrap-web.sh /usr/local/bin/bootstrap-web
 COPY bin/runit-nginx.sh /usr/local/bin/runit-nginx
 COPY bin/runit-phpfpm.sh /usr/local/bin/runit-phpfpm
 
-RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /usr/local/bin/wp \
-    && chmod +x /usr/local/bin/wp
+ADD ssl/ /ssl
 
 WORKDIR /www
